@@ -15,7 +15,8 @@ In the image above, it is seen that there are red packets which means something 
 <img width="1366" height="768" alt="Screenshot (28)" src="https://github.com/user-attachments/assets/2f869405-2486-4940-9299-84b488c05d9f" />
 The communication between the attacker and the target is encrypted becuase SSH is a secure port. This confirms that while an attacker is trying to guess cridentials, the session itself is protected by SSH's encryption layer, preventing any man-in-the-middle sniffing of passwords.
 After the attack simulation, I moved to the Wazuh dashboard to verify the detection. I applied a filter for a RULE ID: 5760 (SSH authentication failed) to isolate relevant events. 
-<img width="1366" height="768" alt="Screenshot (29)" src="https://github.com/user-attachments/assets/5b54f4d7-7a4e-4655-8f0b-956e9407947a" />
+<img width="1366" height="768" alt="Screenshot_2026-05-06_11_39_55" src="https://github.com/user-attachments/assets/f9df06f8-c869-4e53-9843-43366c3ef998" />
+
 The histogram indicates that there is a massive spike in failed login attempts within a very short timeframe, confirming an automated brute-force attack from the source IP 127.0.0.1.
 I also analysed the MITRE att&ck mapping within the wazuh alert. The event was categorised under a tactic for credential access and lateral movement while the technique the attacker used was Password guessng (T1110.001). This allowed me to understand the broader goals of the attacker beyond just the single failed login.
 <img width="1366" height="768" alt="Screenshot_2026-05-06_11_44_28" src="https://github.com/user-attachments/assets/9ad23be1-7da0-4ad4-a3e4-0418f95a4db4" />
